@@ -1,0 +1,47 @@
+{
+  "name": "trigoals",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.117",
+    "@iconify-json/simple-icons": "^1.2.90",
+    "@neondatabase/serverless": "^0.10.4",
+    "@nuxt/ui": "^4.10.0",
+    "@pinia/nuxt": "^0.9.0",
+    "@vueuse/core": "^12.5.0",
+    "@vueuse/nuxt": "^12.5.0",
+    "drizzle-orm": "^0.38.4",
+    "echarts": "^5.6.0",
+    "fast-xml-parser": "^4.5.1",
+    "fit-file-parser": "^1.20.0",
+    "nuxt": "^4.4.8",
+    "nuxt-auth-utils": "^0.5.20",
+    "pinia": "^2.3.1",
+    "tailwindcss": "^4.3.2",
+    "vue-echarts": "^7.0.3",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.4",
+    "@nuxt/eslint": "^1.16.0",
+    "drizzle-kit": "^0.30.2",
+    "eslint": "^10.7.0",
+    "typescript": "^6.0.3",
+    "vitest": "^3.0.4",
+    "vue-tsc": "^3.3.7"
+  }
+}

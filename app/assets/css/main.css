@@ -1,0 +1,129 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: 'Public Sans', sans-serif;
+
+  --color-green-50: #EFFDF5;
+  --color-green-100: #D9FBE8;
+  --color-green-200: #B3F5D1;
+  --color-green-300: #75EDAE;
+  --color-green-400: #00DC82;
+  --color-green-500: #00C16A;
+  --color-green-600: #00A155;
+  --color-green-700: #007F45;
+  --color-green-800: #016538;
+  --color-green-900: #0A5331;
+  --color-green-950: #052E16;
+}
+
+/*
+ * Data-visualisation palette.
+ *
+ * Categorical slots come from a validated set (adjacent-pair CVD ΔE >= 8,
+ * normal-vision ΔE >= 15, contrast checked against each surface). Each mode has
+ * its own steps — the dark values are chosen for the dark surface, not derived
+ * by inverting the light ones. Sports keep a fixed slot so a colour always means
+ * the same discipline across every chart and badge.
+ */
+:root {
+  /* Categorical slots */
+  --viz-1: #2a78d6; /* blue */
+  --viz-2: #eb6834; /* orange */
+  --viz-3: #1baf7a; /* aqua */
+  --viz-4: #4a3aa7; /* violet */
+
+  /* Sports — bound to categorical slots */
+  --sport-swim: var(--viz-1);
+  --sport-bike: var(--viz-2);
+  --sport-run: var(--viz-3);
+  --sport-strength: var(--viz-4);
+  --sport-other: #898781;
+
+  /* Training-load series */
+  --viz-fitness: var(--viz-1);
+  --viz-fatigue: var(--viz-2);
+  --viz-form: var(--viz-3);
+  --viz-load-bar: #d8d7d0;
+
+  /* Chart chrome */
+  --viz-grid: #e1e0d9;
+  --viz-axis: #c3c2b7;
+  --viz-ink: #52514e;
+  --viz-ink-muted: #898781;
+  --viz-surface: #fcfcfb;
+
+  /* Ordinal ramp for intensity zones (single hue, light -> dark).
+     Starts at step 250 so the lightest step still clears 2:1 on light. */
+  --viz-zone-1: #86b6ef;
+  --viz-zone-2: #6da7ec;
+  --viz-zone-3: #5598e7;
+  --viz-zone-4: #3987e5;
+  --viz-zone-5: #2a78d6;
+  --viz-zone-6: #1c5cab;
+  --viz-zone-7: #104281;
+
+  /* Ink that sits on each zone step — the ramp direction differs per mode, so
+     these are declared explicitly rather than derived. */
+  --viz-zone-1-ink: #0b0b0b;
+  --viz-zone-2-ink: #0b0b0b;
+  --viz-zone-3-ink: #0b0b0b;
+  --viz-zone-4-ink: #ffffff;
+  --viz-zone-5-ink: #ffffff;
+  --viz-zone-6-ink: #ffffff;
+  --viz-zone-7-ink: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not(.light)) {
+    --viz-1: #3987e5;
+    --viz-2: #d95926;
+    --viz-3: #199e70;
+    --viz-4: #9085e9;
+
+    --viz-load-bar: #3a3a37;
+
+    --viz-grid: #2c2c2a;
+    --viz-axis: #383835;
+    --viz-ink: #c3c2b7;
+    --viz-ink-muted: #898781;
+    --viz-surface: #1a1a19;
+
+    /* Dark ordinal ramp: darkest step stops at 600 to keep 2:1 on dark. */
+    --viz-zone-1: #cde2fb;
+    --viz-zone-2: #b7d3f6;
+    --viz-zone-3: #9ec5f4;
+    --viz-zone-4: #86b6ef;
+    --viz-zone-5: #5598e7;
+    --viz-zone-6: #2a78d6;
+    --viz-zone-7: #184f95;
+
+    --viz-zone-4-ink: #0b0b0b;
+  }
+}
+
+/* Nuxt UI stamps `.dark` on <html>; it must win over the OS setting. */
+.dark {
+  --viz-1: #3987e5;
+  --viz-2: #d95926;
+  --viz-3: #199e70;
+  --viz-4: #9085e9;
+
+  --viz-load-bar: #3a3a37;
+
+  --viz-grid: #2c2c2a;
+  --viz-axis: #383835;
+  --viz-ink: #c3c2b7;
+  --viz-ink-muted: #898781;
+  --viz-surface: #1a1a19;
+
+  --viz-zone-1: #cde2fb;
+  --viz-zone-2: #b7d3f6;
+  --viz-zone-3: #9ec5f4;
+  --viz-zone-4: #86b6ef;
+  --viz-zone-5: #5598e7;
+  --viz-zone-6: #2a78d6;
+  --viz-zone-7: #184f95;
+
+  --viz-zone-4-ink: #0b0b0b;
+}
