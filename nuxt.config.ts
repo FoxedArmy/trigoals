@@ -19,16 +19,14 @@ export default defineNuxtConfig({
     session: {
       maxAge: 60 * 60 * 24 * 30 // 30 days
     },
-    // Strava (Phase 6) — set via NUXT_STRAVA_* env vars.
+    // Strava — credentials from your own Strava API application.
     strava: {
       clientId: '',
       clientSecret: '',
       webhookVerifyToken: ''
     },
     public: {
-      appName: 'TriGoals',
-      // Flipped on (NUXT_PUBLIC_STRAVA_ENABLED=true) once the Strava app is approved.
-      stravaEnabled: false
+      appName: 'TriGoals'
     }
   },
 

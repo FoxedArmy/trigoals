@@ -23,9 +23,13 @@ export default defineEventHandler(async (event) => {
   const valid = await verifyPassword(user.passwordHash, password)
   if (!valid) throw invalid()
 
-  await setUserSession(event, {
-    user: { id: user.id, email: user.email, name: user.name }
-  })
+  const publicUser = {
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    isAdmin: user.isAdmin
+  }
+  await setUserSession(event, { user: publicUser })
 
-  return { id: user.id, email: user.email, name: user.name }
+  return publicUser
 })

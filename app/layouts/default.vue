@@ -20,14 +20,23 @@ async function logout() {
   await navigateTo('/login')
 }
 
-const userMenu = computed<DropdownMenuItem[][]>(() => [
-  [{ label: user.value?.name || user.value?.email || 'Konto', type: 'label' }],
-  [
-    { label: 'Profil & Zonen', icon: 'i-lucide-user', to: '/profile' },
-    { label: 'Strava', icon: 'i-simple-icons-strava', to: '/settings/strava' }
-  ],
-  [{ label: 'Abmelden', icon: 'i-lucide-log-out', onSelect: logout }]
-])
+const userMenu = computed<DropdownMenuItem[][]>(() => {
+  const account: DropdownMenuItem[] = [
+    { label: 'Profil & Zonen', icon: 'i-lucide-user', to: '/profile' }
+  ]
+
+  // Operator-only entry. Hidden for everyone else, so the Strava connection
+  // isn't even advertised — the page behind it enforces the gate regardless.
+  if (user.value?.isAdmin) {
+    account.push({ label: 'Strava', icon: 'i-simple-icons-strava', to: '/settings/strava' })
+  }
+
+  return [
+    [{ label: user.value?.name || user.value?.email || 'Konto', type: 'label' }],
+    account,
+    [{ label: 'Abmelden', icon: 'i-lucide-log-out', onSelect: logout }]
+  ]
+})
 </script>
 
 <template>

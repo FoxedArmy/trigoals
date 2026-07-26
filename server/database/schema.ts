@@ -25,6 +25,11 @@ export const users = pgTable('users', {
   email: text('email').notNull().unique(),
   passwordHash: text('password_hash').notNull(),
   name: text('name'),
+  /**
+   * Unlocks operator-only features (currently the Strava connection). Granted by
+   * entering the admin password, never by self-registration.
+   */
+  isAdmin: boolean('is_admin').notNull().default(false),
   createdAt: timestamp('created_at').notNull().defaultNow()
 })
 
@@ -203,10 +208,16 @@ export const stravaConnections = pgTable('strava_connections', {
     .primaryKey()
     .references(() => users.id, { onDelete: 'cascade' }),
   athleteId: text('athlete_id').notNull(),
+  /**
+   * Both tokens are stored encrypted (see server/utils/crypto.ts) so a database
+   * dump alone does not hand over anyone's Strava account.
+   */
   accessToken: text('access_token').notNull(),
   refreshToken: text('refresh_token').notNull(),
   expiresAt: timestamp('expires_at').notNull(),
   scope: text('scope'),
+  athleteName: text('athlete_name'),
+  lastSyncAt: timestamp('last_sync_at'),
   createdAt: timestamp('created_at').notNull().defaultNow()
 })
 
